@@ -1,6 +1,6 @@
-# Microsoft Entra ID OBO Flow Demo
+# SharePoint Data Access with Microsoft Graph API and On-Behalf-Of (OBO) Flow
 
-A demonstration of implementing the On-Behalf-Of (OBO) flow for Microsoft Entra ID authentication with Next.js frontend and Python FastAPI backend, enabling secure access to Microsoft Graph API and other Microsoft services.
+A complete implementation demonstrating secure SharePoint data access using Microsoft Graph API with On-Behalf-Of (OBO) authentication flow. Built with Next.js frontend and Python FastAPI backend for enterprise-grade SharePoint integration.
 
 ## Overview
 
@@ -8,13 +8,13 @@ This project demonstrates the implementation of the On-Behalf-Of (OBO) flow, whi
 
 ### New Features - Microsoft Graph API Integration
 
-🎉 **Extended with comprehensive Microsoft Graph API access:**
-- **User Profile & Photo**: Access detailed user information and profile photos
-- **SharePoint Integration**: Browse SharePoint sites and lists
-- **Calendar Access**: View calendar events and meetings
-- **Mail Integration**: Access email messages
-- **OneDrive Files**: Browse and access OneDrive files
-- **Teams Integration**: View Microsoft Teams memberships
+🎉 **Extended with comprehensive SharePoint and Microsoft Graph API access:**
+- **User Profile**: Access detailed user information from Microsoft Graph
+- **SharePoint Integration**: Comprehensive SharePoint sites, libraries, lists, and content access
+- **Document Management**: Browse and access SharePoint files and documents
+- **Advanced SharePoint Features**: Navigation, pages, and recent files access
+
+
 
 ### Implementation Approach
 
@@ -35,13 +35,13 @@ We use the On-Behalf-Of (OBO) flow because:
 
 2. **Comprehensive Microsoft Graph API Access**
    - ✅ User profile information with detailed claims
-   - ✅ User profile photo metadata
    - ✅ SharePoint sites and followed sites
-   - ✅ SharePoint lists for specific sites
-   - ✅ Calendar events and meetings
-   - ✅ Mail messages and metadata
-   - ✅ OneDrive files and folders
-   - ✅ Microsoft Teams memberships
+   - ✅ SharePoint document libraries with file browsing
+   - ✅ SharePoint lists and list items
+   - ✅ SharePoint pages and site navigation
+   - ✅ Recent SharePoint files access
+   - ✅ SharePoint file content retrieval
+   - ✅ SharePoint page content access
 
 3. **Modern Architecture**
    - Next.js frontend with MSAL integration
@@ -68,13 +68,15 @@ We use the On-Behalf-Of (OBO) flow because:
 
 ### Microsoft Graph API Endpoints
 - `GET /api/graph/user` - Get detailed user information from Microsoft Graph
-- `GET /api/graph/user/photo` - Get user's profile photo metadata
 - `GET /api/sharepoint/sites` - Get SharePoint sites and followed sites
+- `GET /api/sharepoint/libraries?site_id={id}&search_name={name}` - Get SharePoint document libraries and files
 - `GET /api/sharepoint/lists?site_id={id}` - Get SharePoint lists for a specific site
-- `GET /api/graph/calendar` - Get user's calendar events (last 10)
-- `GET /api/graph/mail` - Get user's mail messages (last 10)
-- `GET /api/graph/files` - Get user's OneDrive files
-- `GET /api/graph/teams` - Get user's Microsoft Teams memberships
+- `GET /api/sharepoint/pages?site_id={id}` - Get SharePoint pages for a specific site
+- `GET /api/sharepoint/navigation?site_id={id}` - Get SharePoint site navigation
+- `GET /api/sharepoint/recent` - Get user's recent SharePoint files
+- `GET /api/sharepoint/file-content?file_id={id}&site_id={id}` - Get SharePoint file content
+- `GET /api/sharepoint/page-content?page_id={id}&site_id={id}` - Get SharePoint page content
+- `GET /api/debug/token` - Debug endpoint for token information
 
 ### Required Permissions
 
@@ -83,13 +85,14 @@ Each API endpoint requires specific Microsoft Graph permissions:
 | Endpoint | Required Scope | Description |
 |----------|----------------|-------------|
 | `/api/graph/user` | `User.Read` | Read user profile |
-| `/api/graph/user/photo` | `User.Read` | Read user profile photo |
 | `/api/sharepoint/sites` | `Sites.Read.All` | Read SharePoint sites |
+| `/api/sharepoint/libraries` | `Sites.Read.All` | Read SharePoint document libraries |
 | `/api/sharepoint/lists` | `Sites.Read.All` | Read SharePoint lists |
-| `/api/graph/calendar` | `Calendars.Read` | Read calendar events |
-| `/api/graph/mail` | `Mail.Read` | Read mail messages |
-| `/api/graph/files` | `Files.Read` | Read OneDrive files |
-| `/api/graph/teams` | `Team.ReadBasic.All`, `Group.Read.All` | Read Teams memberships |
+| `/api/sharepoint/pages` | `Sites.Read.All` | Read SharePoint pages |
+| `/api/sharepoint/navigation` | `Sites.Read.All` | Read SharePoint navigation |
+| `/api/sharepoint/recent` | `Sites.Read.All` | Read recent SharePoint files |
+| `/api/sharepoint/file-content` | `Sites.Read.All` | Read SharePoint file content |
+| `/api/sharepoint/page-content` | `Sites.Read.All` | Read SharePoint page content |
 
 ## Authentication Flow
 
