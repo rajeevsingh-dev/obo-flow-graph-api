@@ -4,7 +4,10 @@
 .env.development.local
 .env.test.local
 .env.production.local
-*.env
+
+# Allow example environment files
+!example.env
+!example.env.local
 
 # Dependencies
 node_modules/
