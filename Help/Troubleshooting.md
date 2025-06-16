@@ -90,6 +90,38 @@ This error occurs when deploying the application in a different tenant than wher
    - In App Registration > App roles & API scopes - Is the `access_as_user` scope visible?
    - In Enterprise applications - Can they see their registered app?
 
+#### Azure Portal UI Error: "Failed to retrieve the blade definition for 'WebApiBlade'"
+
+If you see this error when trying to access the "Expose an API" blade in the Azure Portal:
+
+```
+Error: Failed to retrieve the blade definition for 'WebApiBlade' from the server.
+Couldn't load "RegisteredApps/Applications/ViewModels/WebApiBlade"; error code 0
+```
+
+This is a UI rendering issue in the Azure Portal, not an issue with your actual application registration. Try these solutions:
+
+1. **Try a different browser** (Edge, Chrome, Firefox)
+2. **Clear your browser cache and cookies**:
+   - For Chrome: Press Ctrl+Shift+Del
+   - Select "Cookies and site data" and "Cached images and files"
+   - Click "Clear data"
+3. **Use InPrivate/Incognito mode**
+4. **Try the legacy Azure Portal experience**:
+   - Visit: https://portal.azure.com/?feature.customportal=false
+5. **Use Microsoft Entra admin center instead**:
+   - Visit: https://entra.microsoft.com
+   - Navigate to "Applications" > "App registrations" > Your app
+
+If you need to configure via command line instead (Azure CLI):
+```powershell
+# Set API exposure for your app
+az ad app update --id <your-client-id> --identifier-uris "api://<your-client-id>"
+
+# Add the scope
+az ad app update --id <your-client-id> --oauth2-permissions '[{"adminConsentDescription":"Allow the application to access the API on behalf of the signed-in user","adminConsentDisplayName":"Access application as a user","id":"a42657d6-7f20-40e3-b6f0-cee03008a62d","isEnabled":true,"type":"User","userConsentDescription":"Allow the application to access the API on your behalf","userConsentDisplayName":"Access application as you","value":"access_as_user"}]'
+```
+
 #### Token Acquisition Errors
 - Clear browser cache and cookies
 - Sign out completely and sign back in
