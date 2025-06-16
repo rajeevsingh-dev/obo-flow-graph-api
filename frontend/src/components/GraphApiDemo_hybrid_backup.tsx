@@ -14,6 +14,7 @@ interface GraphApiService {
     endpoint: string;
     description: string;
     icon: string;
+    scopes?: string[];
 }
 
 const graphServices: GraphApiService[] = [
@@ -40,40 +41,14 @@ const graphServices: GraphApiService[] = [
         endpoint: '/api/sharepoint/sites',
         description: 'Access SharePoint sites via Pure OBO Flow',
         icon: '🏢'
-    },
-    {
-        name: 'Calendar Events',
-        endpoint: '/api/graph/calendar',
-        description: 'Get calendar events via Pure OBO Flow',
-        icon: '📅'
-    },
-    {
-        name: 'Mail Messages',
-        endpoint: '/api/graph/mail',
-        description: 'Get mail messages via Pure OBO Flow',
-        icon: '📧'
-    },
-    {
-        name: 'OneDrive Files',
-        endpoint: '/api/graph/files',
-        description: 'Get OneDrive files via Pure OBO Flow',
-        icon: '📁'
-    },
-    {
-        name: 'Teams Memberships',
-        endpoint: '/api/graph/teams',
-        description: 'Get Teams memberships via Pure OBO Flow',
-        icon: '👥'
-    }
+    },    // Calendar Events, Mail Messages, OneDrive Files, Teams Memberships endpoints removed - not implemented in current version
 ];
 
 const GraphApiDemo: React.FC = () => {
     const { instance, accounts } = useMsal();
     const [responses, setResponses] = useState<Record<string, ApiResponse | null>>({});
     const [loading, setLoading] = useState<Record<string, boolean>>({});
-    const [errors, setErrors] = useState<Record<string, string | null>>({});
-
-    const callGraphApi = async (service: GraphApiService) => {
+    const [errors, setErrors] = useState<Record<string, string | null>>({});    const callGraphApi = async (service: GraphApiService) => {
         if (accounts.length === 0) {
             setErrors(prev => ({ ...prev, [service.name]: 'No authenticated account found' }));
             return;
@@ -86,7 +61,7 @@ const GraphApiDemo: React.FC = () => {
             
             try {
                 const silentRequest = {
-                    scopes: service.scopes,
+                    scopes: oboScopes.api,
                     account: accounts[0]
                 };
 

@@ -1,3 +1,6 @@
+# References folder - Private documentation
+References/
+
 # Environment files - CRITICAL: Never commit these to source control
 .env
 .env.local

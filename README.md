@@ -191,10 +191,10 @@ sequenceDiagram
 
 4. Create `.env` file:
    ```env
-   AZURE_CLIENT_ID=your_client_id_here
-   AZURE_TENANT_ID=your_tenant_id_here
-   AUTHORITY=https://login.microsoftonline.com/your_tenant_id_here
-   AZURE_CLIENT_SECRET=your_client_secret_here
+   AZURE_CLIENT_ID=CLIENT-ID
+   AZURE_TENANT_ID=TENANT-ID
+   AUTHORITY=https://login.microsoftonline.com/TENANT-ID
+   AZURE_CLIENT_SECRET=CLIENT-SECRET-VALUE
    PORT=5000
    HOST=0.0.0.0
    ALLOWED_ORIGINS=http://localhost:3000
@@ -214,8 +214,8 @@ sequenceDiagram
 
 3. Create `.env.local` file:
    ```env
-   NEXT_PUBLIC_AZURE_CLIENT_ID=your_client_id_here
-   NEXT_PUBLIC_AZURE_TENANT_ID=your_tenant_id_here
+   NEXT_PUBLIC_AZURE_CLIENT_ID=CLIENT-ID
+   NEXT_PUBLIC_AZURE_TENANT_ID=TENANT-ID
    NEXT_PUBLIC_REDIRECT_URI=http://localhost:3000
    NEXT_PUBLIC_API_URL=http://localhost:5000
    ```
@@ -266,7 +266,12 @@ OBO-Flow-Demo/
 
 ## Troubleshooting
 
-Refer to this document for complete troubleshooting: [Troubleshooting.md](/Help/Troubleshooting.md)
+Refer to these documents for help:
+- [Troubleshooting Guide](/Help/Troubleshooting.md)
+- [Authentication Options](/Help/AUTHENTICATION_OPTIONS.md)
+- [Implementation Options](/Help/IMPLEMENTATION_OPTIONS.md)
+- [Connect to SharePoint Guide](/Help/README-CONNECT-TO-SHAREPOINT.md)
+- [User Flow Details](/Help/UserFlow.md)
 
 
 ## License

@@ -43,8 +43,7 @@ const graphServices: GraphApiService[] = [
         icon: '🏢'
     },    {
         name: 'Document Libraries',
-        endpoint: '/api/sharepoint/libraries',
-        description: 'Get SharePoint document libraries and files. Can search for specific files to get their IDs.',
+        endpoint: '/api/sharepoint/libraries',        description: 'Get SharePoint document libraries and files. Can search for specific files to get their IDs.',
         icon: '📚',
         requiresParameters: false,
         parameters: [
@@ -52,7 +51,7 @@ const graphServices: GraphApiService[] = [
                 name: 'site_id',
                 description: 'SharePoint site ID or domain (optional - defaults to root site)',
                 required: false,
-                placeholder: 'e.g., mngenvmcap293807.sharepoint.com'
+                placeholder: 'e.g., contoso.sharepoint.com'
             },
             {
                 name: 'search_name',
@@ -94,14 +93,13 @@ const graphServices: GraphApiService[] = [
             {
                 name: 'file_id',
                 description: 'SharePoint file ID (optional - leave empty to browse files)',
-                required: false,
-                placeholder: 'e.g., 01ABCDEF123456789...'
+                required: false,                placeholder: 'e.g., 01ABCDEF123456789...'
             },
             {
                 name: 'site_id',
                 description: 'SharePoint site ID or domain (optional - defaults to root site)',
                 required: false,
-                placeholder: 'e.g., mngenvmcap293807.sharepoint.com'
+                placeholder: 'e.g., contoso.sharepoint.com'
             },
             {
                 name: 'search_name',

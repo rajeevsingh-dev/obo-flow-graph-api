@@ -4,7 +4,7 @@ This guide will help you configure the necessary permissions in your Azure app r
 
 ## The Error Explained
 
-The error `AADSTS65001: The user or administrator has not consented to use the application with ID '20e9f47b-7a60-4279-94d6-6a9684a16920'` indicates that:
+The error `AADSTS65001: The user or administrator has not consented to use the application with ID 'CLIENT-ID'` indicates that:
 
 1. **Missing Permissions**: Your Azure app registration doesn't have the required API permissions configured
 2. **No Consent**: Users haven't consented to the permissions your app is requesting
@@ -16,7 +16,7 @@ The error `AADSTS65001: The user or administrator has not consented to use the a
 
 1. Go to [Azure Portal](https://portal.azure.com)
 2. Search for "App registrations" or navigate to **Microsoft Entra ID** > **App registrations**
-3. Find your app with ID `20e9f47b-7a60-4279-94d6-6a9684a16920`
+3. Find your app registration
 
 ### 2. Configure API Permissions
 
@@ -38,11 +38,6 @@ Add these permissions one by one:
 
 #### Additional Permissions (May require admin consent)
 - `Sites.Read.All` - Read items in all site collections
-- `Calendars.Read` - Read user calendars
-- `Mail.Read` - Read user mail
-- `Files.Read` - Read user files
-- `Team.ReadBasic.All` - Read the names and descriptions of teams
-- `Group.Read.All` - Read all groups
 
 ### 4. Grant Admin Consent
 
@@ -63,11 +58,6 @@ Your API permissions should look like this:
 |------------------------|------|-------------|------------------------|---------|
 | Microsoft Graph / User.Read | Delegated | Sign in and read user profile | No | ✅ Granted |
 | Microsoft Graph / Sites.Read.All | Delegated | Read items in all site collections | Yes | ✅ Granted |
-| Microsoft Graph / Calendars.Read | Delegated | Read user calendars | No | ✅ Granted |
-| Microsoft Graph / Mail.Read | Delegated | Read user mail | No | ✅ Granted |
-| Microsoft Graph / Files.Read | Delegated | Read user files | No | ✅ Granted |
-| Microsoft Graph / Team.ReadBasic.All | Delegated | Read the names and descriptions of teams | Yes | ✅ Granted |
-| Microsoft Graph / Group.Read.All | Delegated | Read all groups | Yes | ✅ Granted |
 
 ## Step 6: Expose API for OBO Flow
 
@@ -81,7 +71,7 @@ Your API permissions should look like this:
 2. **Set Application ID URI**
    - Click **Add** next to Application ID URI
    - Accept the default format: `api://{client-id}` 
-   - Example: `api://20e9f47b-7a60-4279-94d6-6a9684a16920`
+   - Example: `api://CLIENT-ID`
    - Click **Save**
 
 3. **Add a Scope**
@@ -101,9 +91,9 @@ Your API permissions should look like this:
 5. **Verify Configuration**
    Your exposed API should show:
    ```
-   Application ID URI: api://20e9f47b-7a60-4279-94d6-6a9684a16920
+   Application ID URI: api://CLIENT-ID
    Scopes defined by this API:
-   - api://20e9f47b-7a60-4279-94d6-6a9684a16920/access_as_user
+   - api://CLIENT-ID/access_as_user
    ```
 
 ### 7. Update API Permissions
@@ -122,7 +112,7 @@ After exposing the API, update your API permissions:
 3. **Final permissions list should include**:
    ```
    Microsoft Graph / User.Read (Delegated)
-   Microsoft Graph / Sites.Read.All (Delegated) 
+   Microsoft Graph / Sites.Read.All (Delegated)
    [Your App] / access_as_user (Delegated)
    ```
 

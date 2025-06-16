@@ -163,10 +163,6 @@ User → Frontend → Microsoft Entra ID → Frontend → Backend API → [OBO F
 - User Profile Photo (`User.Read`)
 - SharePoint Sites (`Sites.Read.All`)
 - SharePoint Lists (`Sites.Read.All`)
-- Calendar Events (`Calendars.Read`)
-- Mail Messages (`Mail.Read`)
-- OneDrive Files (`Files.Read`)
-- Teams Memberships (`Team.ReadBasic.All`, `Group.Read.All`)
 
 ## Testing the Implementation
 
@@ -196,8 +192,3 @@ User → Frontend → Microsoft Entra ID → Frontend → Backend API → [OBO F
 4. **Insufficient Permissions**:
    - Grant admin consent for all required Microsoft Graph permissions
    - Ensure user has appropriate licenses (e.g., SharePoint, Teams)
-
-For detailed setup instructions, see:
-- [SETUP_CHECKLIST.md](./SETUP_CHECKLIST.md)
-- [EXPOSE_API_SETUP_GUIDE.md](./EXPOSE_API_SETUP_GUIDE.md)
-- [TROUBLESHOOTING_AADSTS500011.md](./TROUBLESHOOTING_AADSTS500011.md)

@@ -40,31 +40,7 @@ const graphServices: GraphApiService[] = [
         endpoint: '/api/sharepoint/sites',
         description: 'Access SharePoint sites via Pure OBO Flow',
         icon: '🏢'
-    },
-    {
-        name: 'Calendar Events',
-        endpoint: '/api/graph/calendar',
-        description: 'Get calendar events via Pure OBO Flow',
-        icon: '📅'
-    },
-    {
-        name: 'Mail Messages',
-        endpoint: '/api/graph/mail',
-        description: 'Get mail messages via Pure OBO Flow',
-        icon: '📧'
-    },
-    {
-        name: 'OneDrive Files',
-        endpoint: '/api/graph/files',
-        description: 'Get OneDrive files via Pure OBO Flow',
-        icon: '📁'
-    },
-    {
-        name: 'Teams Memberships',
-        endpoint: '/api/graph/teams',
-        description: 'Get Teams memberships via Pure OBO Flow',
-        icon: '👥'
-    }
+    },    // Calendar Events, Mail Messages, OneDrive Files, Teams Memberships endpoints removed - not implemented in current version
 ];
 
 const GraphApiDemo: React.FC = () => {

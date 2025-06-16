@@ -646,7 +646,7 @@ async def get_sharepoint_file_content(file_id: str = None, site_id: str = None, 
             root_site = await make_graph_request("https://graph.microsoft.com/v1.0/sites/root", graph_token)
             site_id = root_site.get("id", "root")
         elif site_id and "sharepoint.com" in site_id and "," not in site_id:
-            # If site_id looks like a domain (e.g., mngenvmcap293807.sharepoint.com), find the actual site ID
+            # If site_id looks like a domain (e.g., contoso.sharepoint.com), find the actual site ID
             try:
                 sites = await make_graph_request("https://graph.microsoft.com/v1.0/sites?search=*", graph_token)
                 for site in sites.get("value", []):
