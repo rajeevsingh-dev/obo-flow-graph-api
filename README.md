@@ -129,7 +129,7 @@ sequenceDiagram
 
 ### 1. Azure App Registration
 
-**🚨 IMPORTANT**: For OBO flow to work, your app registration must expose an API scope. See our detailed setup checklist: [SETUP_CHECKLIST.md](./SETUP_CHECKLIST.md)
+**🚨 IMPORTANT**: For OBO flow to work, your app registration must expose an API scope. 
 
 1. Go to [Azure Portal](https://portal.azure.com)
 2. Navigate to Microsoft Entra ID → App registrations → New registration
@@ -266,71 +266,11 @@ OBO-Flow-Demo/
 
 ## Troubleshooting
 
-### Authentication Issues
+Refer to this document for complete troubleshooting: [Troubleshooting.md](/Help/Troubleshooting.md)
 
-#### AADSTS65001: Consent Required Error
-If you see the error "The user or administrator has not consented to use the application", follow these steps:
-
-1. **Check App Registration Permissions**:
-   - Go to Azure Portal > App registrations > Your App > API permissions
-   - Ensure all required Microsoft Graph permissions are added
-   - Grant admin consent for the organization
-
-2. **Required Permissions**:
-   ```
-   Microsoft Graph (Delegated):
-   - User.Read (Sign in and read user profile)
-   - Sites.Read.All (Read SharePoint sites) - Requires admin consent
-   [Your App] (Delegated):
-   - access_as_user (Access application as user)
-   ```
-
-3. **Grant Admin Consent**:
-   - In API permissions, click "Grant admin consent for [Organization]"
-   - All permissions should show green checkmarks when granted
-
-4. **For detailed setup instructions, see**: [SETUP_CHECKLIST.md](./SETUP_CHECKLIST.md)
-
-#### AADSTS50013: Signature Validation Failed (OBO Flow)
-This error occurs when the OBO token exchange fails:
-
-1. **Check API Exposure**:
-   - Ensure your app exposes an API with scope `access_as_user`
-   - Application ID URI should be `api://{your-client-id}`
-
-2. **Verify Token Audience**:
-   - Frontend should request `api://{client-id}/access_as_user` scope
-   - Backend should validate token audience matches your application
-
-3. **Check Environment Variables**:
-   - Ensure CLIENT_ID matches your Azure app registration
-   - Verify AZURE_CLIENT_SECRET is correct and not expired
-
-#### Token Acquisition Errors
-- Clear browser cache and cookies
-- Sign out completely and sign back in
-- Check that environment variables match your Azure app registration
-
-#### Network/CORS Issues
-- Ensure backend is running on the correct port (5000)
-- Verify CORS settings in backend allow frontend origin
-- Check firewall settings if running on different machines
-
-### API Issues
-- **403 Forbidden**: Check that the required permissions are granted in Azure
-- **404 Not Found**: Verify the API endpoints are correct
-- **500 Internal Server Error**: Check the backend logs for detailed error messages
-
-### Common Solutions
-1. **Restart Both Services**: Stop and restart both frontend and backend
-2. **Clear Browser Data**: Clear cache, cookies, and local storage
-3. **Check Environment Variables**: Verify all environment variables are correctly set
-4. **Review Azure Configuration**: Double-check client ID, tenant ID, and permissions
 
 ## License
 
 MIT License - See [LICENSE](LICENSE) file for details.
 
 ---
-
-For detailed documentation, advanced configuration, and troubleshooting, see [readme-complete.md](readme-complete.md).
